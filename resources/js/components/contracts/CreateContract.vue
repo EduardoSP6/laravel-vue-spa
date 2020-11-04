@@ -12,7 +12,7 @@
                         <ValidationObserver ref="form" v-slot="{ handleSubmit }">
                             <form @submit.prevent="handleSubmit(onSubmit)">
 
-                                <ValidationProvider name="Nome do contratante" rules="required" :bails="false" v-slot="{ errors }">
+                                <ValidationProvider name="Nome do contratante" vid="contractor_name" rules="required" :bails="false" v-slot="{ errors }">
                                     <div class="form-group">
                                         <label>Nome do contratante *</label>
                                         <input type="text" class="form-control" v-model="contractor_name">
@@ -20,7 +20,7 @@
                                     </div>
                                 </ValidationProvider>
 
-                                <ValidationProvider name="E-mail do contratante" rules="required|email" :bails="false" v-slot="{ errors }">
+                                <ValidationProvider name="E-mail do contratante" vid="contractor_email" rules="required|email" :bails="false" v-slot="{ errors }">
                                     <div class="form-group">
                                         <label>E-mail do contratante *</label>
                                         <input type="text" class="form-control" v-model="contractor_email">
@@ -28,7 +28,7 @@
                                     </div>
                                 </ValidationProvider>
 
-                                <ValidationProvider name="Tipo de pessoa" rules="required" :bails="false" v-slot="{ errors }">
+                                <ValidationProvider name="Tipo de pessoa" vid="person_type" rules="required" :bails="false" v-slot="{ errors }">
                                     <div class="form-group">
                                         <label>Tipo de pessoa *</label>
                                         <select class="form-control" v-model="person_type">
@@ -48,7 +48,7 @@
                                     </div>
                                 </ValidationProvider>
 
-                                <ValidationProvider name="Imóvel" rules="required" :bails="false" v-slot="{ errors }">
+                                <ValidationProvider name="Imóvel" vid="property_id" rules="required" :bails="false" v-slot="{ errors }">
                                     <div class="form-group">
                                         <label>Imóvel *</label>
                                         <select class="form-control" v-model="property_id">
@@ -72,7 +72,6 @@
 </template>
 
 <script>
-    import ValidationErrors from '../ValidationErrors.vue';
     import { ValidationProvider, ValidationObserver, extend, localize } from 'vee-validate';
     import { required, email } from 'vee-validate/dist/rules';
     import pt_BR from 'vee-validate/dist/locale/pt_BR.json';
@@ -87,7 +86,6 @@
     export default {
         directives: { mask },
         components: {
-            ValidationErrors,
             ValidationObserver,
             ValidationProvider,
         },
