@@ -22,6 +22,6 @@ class Contract extends Model implements Transformable
     ];
 
     public function property() {
-        return $this->hasOne(Property::class);
+        return $this->belongsTo(Property::class, 'property_id');
     }
 }

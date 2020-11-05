@@ -8,14 +8,14 @@
         <table class="table table-bordered table-striped" v-show="properties.length > 0">
             <thead>
             <tr>
-                <th>E-mail do proprietário</th>
-                <th>Endereço</th>
+                <th><a href="#" @click="sortProperties('owner_email')" title="Clique para ordenar">E-mail do proprietário</a></th>
+                <th><a href="#" @click="sortProperties('street')" title="Clique para ordenar">Endereço</a></th>
                 <th>Status</th>
                 <th>Ações</th>
             </tr>
             </thead>
             <tbody>
-            <tr v-for="property in properties" :key="property.uuid">
+            <tr v-for="property in sortData" :key="property.uuid">
                 <td>{{ property.owner_email }}</td>
                 <td>{{ `${property.street}, ${property.number}, ${property.city}, ${property.state}` }}</td>
                 <td class="text-center">
@@ -45,6 +45,8 @@
     export default {
         data() {
             return {
+                sortColumn: 'owner_email',
+                sortOrder: 'asc',
                 properties: []
             }
         },
@@ -55,7 +57,20 @@
                     this.properties = response.data;
                 });
         },
+        computed: {
+            sortData() {
+                return  _.orderBy(this.properties, this.sortColumn, this.sortOrder);
+            }
+        },
         methods: {
+            sortProperties(field) {
+                if (this.sortColumn === field) {
+                    this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+                } else {
+                    this.sortColumn = field;
+                    this.sortOrder = 'asc';
+                }
+            },
             deleteProperty(uuid, event) {
                 event.preventDefault();
                 if (confirm("Deseja realmente excluir este registro?")) {

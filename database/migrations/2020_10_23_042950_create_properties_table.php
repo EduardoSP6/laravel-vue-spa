@@ -24,6 +24,7 @@ class CreatePropertiesTable extends Migration
             $table->string('city')->comment('Cidade');
             $table->string('state')->comment('Estado');
             $table->tinyInteger('status')->default(1)->comment("Status: 1- Nao contratado; 2- Contratado");
+            $table->softDeletes();
             $table->timestamps();
         });
     }

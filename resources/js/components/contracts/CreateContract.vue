@@ -76,7 +76,7 @@
     import { required, email } from 'vee-validate/dist/rules';
     import pt_BR from 'vee-validate/dist/locale/pt_BR.json';
     import {mask} from 'vue-the-mask';
-    import Helper from '../../Helper';
+    import Helper from '../../helper';
 
     localize('pt_BR', pt_BR);
 

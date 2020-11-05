@@ -1961,7 +1961,7 @@ __webpack_require__.r(__webpack_exports__);
 var vee_validate_dist_locale_pt_BR_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t(/*! vee-validate/dist/locale/pt_BR.json */ "./node_modules/vee-validate/dist/locale/pt_BR.json", 1);
 /* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-the-mask */ "./node_modules/vue-the-mask/dist/vue-the-mask.js");
 /* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_the_mask__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _Helper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Helper */ "./resources/js/Helper.js");
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../helper */ "./resources/js/helper.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2097,15 +2097,15 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('email', vee_validat
       } // remove a mascara
 
 
-      document = _Helper__WEBPACK_IMPORTED_MODULE_5__["default"].unmaskText(document); // PJ
+      document = _helper__WEBPACK_IMPORTED_MODULE_5__["default"].unmaskText(document); // PJ
 
       if (personType === 1) {
-        if (!_Helper__WEBPACK_IMPORTED_MODULE_5__["default"].validateCNPJ(document)) {
+        if (!_helper__WEBPACK_IMPORTED_MODULE_5__["default"].validateCNPJ(document)) {
           this.docError = "CNPJ inválido";
         }
       } else {
         // PF
-        if (!_Helper__WEBPACK_IMPORTED_MODULE_5__["default"].validateCPF(document)) {
+        if (!_helper__WEBPACK_IMPORTED_MODULE_5__["default"].validateCPF(document)) {
           this.docError = "CPF inválido";
         }
       }
@@ -2138,7 +2138,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('email', vee_validat
                 formData = {
                   contractor_name: _this2.$data.contractor_name,
                   contractor_email: _this2.$data.contractor_email,
-                  document: _Helper__WEBPACK_IMPORTED_MODULE_5__["default"].unmaskText(_this2.$data.document),
+                  document: _helper__WEBPACK_IMPORTED_MODULE_5__["default"].unmaskText(_this2.$data.document),
                   person_type: _this2.$data.person_type,
                   property_id: _this2.$data.property_id
                 };
@@ -2184,7 +2184,7 @@ __webpack_require__.r(__webpack_exports__);
 var vee_validate_dist_locale_pt_BR_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t(/*! vee-validate/dist/locale/pt_BR.json */ "./node_modules/vee-validate/dist/locale/pt_BR.json", 1);
 /* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-the-mask */ "./node_modules/vue-the-mask/dist/vue-the-mask.js");
 /* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_the_mask__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _Helper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Helper */ "./resources/js/Helper.js");
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../helper */ "./resources/js/helper.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2288,7 +2288,8 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('email', vee_validat
       person_type: '',
       property_id: '',
       properties: [],
-      docError: ''
+      docError: '',
+      contractProperty: {}
     };
   },
   computed: {
@@ -2306,10 +2307,14 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('email', vee_validat
     var _this = this;
 
     this.axios.get("".concat("http://localhost:8000", "/api/contracts/").concat(this.$route.params.uuid, "/edit")).then(function (response) {
-      _this.contractor_name = response.data.contractor_name, _this.contractor_email = response.data.contractor_name, _this.document = response.data.document, _this.person_type = response.data.person_type, _this.property_id = response.data.property_id;
+      _this.contractor_name = response.data.contractor_name, _this.contractor_email = response.data.contractor_email, _this.document = response.data.document, _this.person_type = response.data.person_type, _this.property_id = response.data.property_id, _this.contractProperty = response.data.property;
     });
     this.axios.get("http://localhost:8000" + '/api/properties/avaliable').then(function (response) {
       _this.properties = response.data;
+
+      if (_this.contractProperty) {
+        _this.properties.push(_this.contractProperty);
+      }
     });
   },
   methods: {
@@ -2323,15 +2328,15 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('email', vee_validat
       } // remove a mascara
 
 
-      document = _Helper__WEBPACK_IMPORTED_MODULE_5__["default"].unmaskText(document); // PJ
+      document = _helper__WEBPACK_IMPORTED_MODULE_5__["default"].unmaskText(document); // PJ
 
       if (personType === 1) {
-        if (!_Helper__WEBPACK_IMPORTED_MODULE_5__["default"].validateCNPJ(document)) {
+        if (!_helper__WEBPACK_IMPORTED_MODULE_5__["default"].validateCNPJ(document)) {
           this.docError = "CNPJ inválido";
         }
       } else {
         // PF
-        if (!_Helper__WEBPACK_IMPORTED_MODULE_5__["default"].validateCPF(document)) {
+        if (!_helper__WEBPACK_IMPORTED_MODULE_5__["default"].validateCPF(document)) {
           this.docError = "CPF inválido";
         }
       }
@@ -2364,7 +2369,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('email', vee_validat
                 formData = {
                   contractor_name: _this2.$data.contractor_name,
                   contractor_email: _this2.$data.contractor_email,
-                  document: _Helper__WEBPACK_IMPORTED_MODULE_5__["default"].unmaskText(_this2.$data.document),
+                  document: _helper__WEBPACK_IMPORTED_MODULE_5__["default"].unmaskText(_this2.$data.document),
                   person_type: _this2.$data.person_type,
                   property_id: _this2.$data.property_id
                 };
@@ -2798,6 +2803,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      sortColumn: 'owner_email',
+      sortOrder: 'asc',
       properties: []
     };
   },
@@ -2808,7 +2815,20 @@ __webpack_require__.r(__webpack_exports__);
       _this.properties = response.data;
     });
   },
+  computed: {
+    sortData: function sortData() {
+      return _.orderBy(this.properties, this.sortColumn, this.sortOrder);
+    }
+  },
   methods: {
+    sortProperties: function sortProperties(field) {
+      if (this.sortColumn === field) {
+        this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+      } else {
+        this.sortColumn = field;
+        this.sortOrder = 'asc';
+      }
+    },
     deleteProperty: function deleteProperty(uuid, event) {
       var _this2 = this;
 
@@ -42960,7 +42980,7 @@ var render = function() {
                                 staticClass: "btn btn-primary",
                                 attrs: { type: "submit" }
                               },
-                              [_vm._v("Criar")]
+                              [_vm._v("Salvar")]
                             )
                           ],
                           1
@@ -43047,7 +43067,7 @@ var render = function() {
         _c(
           "tbody",
           _vm._l(_vm.contracts, function(contract) {
-            return _c("tr", { key: _vm.property.uuid }, [
+            return _c("tr", { key: contract.uuid }, [
               _c("td", [_vm._v(_vm._s(contract.contractor_name))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(contract.contractor_email))]),
@@ -43086,7 +43106,7 @@ var render = function() {
                             staticClass: "btn btn-sm btn-primary",
                             attrs: {
                               to: {
-                                name: "properties.edit",
+                                name: "contracts.edit",
                                 params: { uuid: contract.uuid }
                               }
                             }
@@ -44205,11 +44225,47 @@ var render = function() {
         staticClass: "table table-bordered table-striped"
       },
       [
-        _vm._m(0),
+        _c("thead", [
+          _c("tr", [
+            _c("th", [
+              _c(
+                "a",
+                {
+                  attrs: { href: "#", title: "Clique para ordenar" },
+                  on: {
+                    click: function($event) {
+                      return _vm.sortProperties("owner_email")
+                    }
+                  }
+                },
+                [_vm._v("E-mail do proprietário")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("th", [
+              _c(
+                "a",
+                {
+                  attrs: { href: "#", title: "Clique para ordenar" },
+                  on: {
+                    click: function($event) {
+                      return _vm.sortProperties("street")
+                    }
+                  }
+                },
+                [_vm._v("Endereço")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Status")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Ações")])
+          ])
+        ]),
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.properties, function(property) {
+          _vm._l(_vm.sortData, function(property) {
             return _c("tr", { key: property.uuid }, [
               _c("td", [_vm._v(_vm._s(property.owner_email))]),
               _vm._v(" "),
@@ -44342,24 +44398,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("E-mail do proprietário")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Endereço")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Status")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Ações")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -59608,118 +59647,6 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/js/Helper.js":
-/*!********************************!*\
-  !*** ./resources/js/Helper.js ***!
-  \********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Helper; });
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var Helper = /*#__PURE__*/function () {
-  function Helper() {
-    _classCallCheck(this, Helper);
-  }
-
-  _createClass(Helper, null, [{
-    key: "validateCNPJ",
-
-    /** Validacao de CNPJ **/
-    value: function validateCNPJ(cnpj) {
-      cnpj = cnpj.replace(/[^\d]+/g, '');
-      if (cnpj === '') return false;
-      if (cnpj.length !== 14) return false; // Elimina CNPJs invalidos conhecidos
-
-      if (cnpj == "00000000000000" || cnpj == "11111111111111" || cnpj == "22222222222222" || cnpj == "33333333333333" || cnpj == "44444444444444" || cnpj == "55555555555555" || cnpj == "66666666666666" || cnpj == "77777777777777" || cnpj == "88888888888888" || cnpj == "99999999999999") return false; // Valida DVs
-
-      var tamanho = cnpj.length - 2;
-      var numeros = cnpj.substring(0, tamanho);
-      var digitos = cnpj.substring(tamanho);
-      var soma = 0;
-      var pos = tamanho - 7;
-
-      for (var i = tamanho; i >= 1; i--) {
-        soma += numeros.charAt(tamanho - i) * pos--;
-        if (pos < 2) pos = 9;
-      }
-
-      var resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-      if (resultado != digitos.charAt(0)) return false;
-      tamanho = tamanho + 1;
-      numeros = cnpj.substring(0, tamanho);
-      soma = 0;
-      pos = tamanho - 7;
-
-      for (var _i = tamanho; _i >= 1; _i--) {
-        soma += numeros.charAt(tamanho - _i) * pos--;
-        if (pos < 2) pos = 9;
-      }
-
-      resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-      return resultado == digitos.charAt(1);
-    }
-    /** Validacao de CPF **/
-
-  }, {
-    key: "validateCPF",
-    value: function validateCPF(cpf) {
-      var numeros, digitos, soma, i, resultado;
-      var digitos_iguais = 1;
-      if (cpf.length < 11) return false;
-
-      for (i = 0; i < cpf.length - 1; i++) {
-        if (cpf.charAt(i) !== cpf.charAt(i + 1)) {
-          digitos_iguais = 0;
-          break;
-        }
-      }
-
-      if (!digitos_iguais) {
-        numeros = cpf.substring(0, 9);
-        digitos = cpf.substring(9);
-        soma = 0;
-
-        for (i = 10; i > 1; i--) {
-          soma += numeros.charAt(10 - i) * i;
-        }
-
-        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-        if (resultado != digitos.charAt(0)) return false;
-        numeros = cpf.substring(0, 10);
-        soma = 0;
-
-        for (i = 11; i > 1; i--) {
-          soma += numeros.charAt(11 - i) * i;
-        }
-
-        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-        return resultado == digitos.charAt(1);
-      } else return false;
-    }
-    /** Retorna texto sem mascara **/
-
-  }, {
-    key: "unmaskText",
-    value: function unmaskText(text) {
-      return text ? String(text).replace(new RegExp(/[-!$%^&*()_+|~=`{}[\]:";'<>?,./\\ ]/, 'g'), '') : text;
-    }
-  }]);
-
-  return Helper;
-}();
-
-
-
-/***/ }),
-
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -60318,6 +60245,118 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListProperty_vue_vue_type_template_id_4dadbfd8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListProperty_vue_vue_type_template_id_4dadbfd8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/helper.js":
+/*!********************************!*\
+  !*** ./resources/js/helper.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Helper; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Helper = /*#__PURE__*/function () {
+  function Helper() {
+    _classCallCheck(this, Helper);
+  }
+
+  _createClass(Helper, null, [{
+    key: "validateCNPJ",
+
+    /** Validacao de CNPJ **/
+    value: function validateCNPJ(cnpj) {
+      cnpj = cnpj.replace(/[^\d]+/g, '');
+      if (cnpj === '') return false;
+      if (cnpj.length !== 14) return false; // Elimina CNPJs invalidos conhecidos
+
+      if (cnpj == "00000000000000" || cnpj == "11111111111111" || cnpj == "22222222222222" || cnpj == "33333333333333" || cnpj == "44444444444444" || cnpj == "55555555555555" || cnpj == "66666666666666" || cnpj == "77777777777777" || cnpj == "88888888888888" || cnpj == "99999999999999") return false; // Valida DVs
+
+      var tamanho = cnpj.length - 2;
+      var numeros = cnpj.substring(0, tamanho);
+      var digitos = cnpj.substring(tamanho);
+      var soma = 0;
+      var pos = tamanho - 7;
+
+      for (var i = tamanho; i >= 1; i--) {
+        soma += numeros.charAt(tamanho - i) * pos--;
+        if (pos < 2) pos = 9;
+      }
+
+      var resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+      if (resultado != digitos.charAt(0)) return false;
+      tamanho = tamanho + 1;
+      numeros = cnpj.substring(0, tamanho);
+      soma = 0;
+      pos = tamanho - 7;
+
+      for (var _i = tamanho; _i >= 1; _i--) {
+        soma += numeros.charAt(tamanho - _i) * pos--;
+        if (pos < 2) pos = 9;
+      }
+
+      resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+      return resultado == digitos.charAt(1);
+    }
+    /** Validacao de CPF **/
+
+  }, {
+    key: "validateCPF",
+    value: function validateCPF(cpf) {
+      var numeros, digitos, soma, i, resultado;
+      var digitos_iguais = 1;
+      if (cpf.length < 11) return false;
+
+      for (i = 0; i < cpf.length - 1; i++) {
+        if (cpf.charAt(i) !== cpf.charAt(i + 1)) {
+          digitos_iguais = 0;
+          break;
+        }
+      }
+
+      if (!digitos_iguais) {
+        numeros = cpf.substring(0, 9);
+        digitos = cpf.substring(9);
+        soma = 0;
+
+        for (i = 10; i > 1; i--) {
+          soma += numeros.charAt(10 - i) * i;
+        }
+
+        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+        if (resultado != digitos.charAt(0)) return false;
+        numeros = cpf.substring(0, 10);
+        soma = 0;
+
+        for (i = 11; i > 1; i--) {
+          soma += numeros.charAt(11 - i) * i;
+        }
+
+        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+        return resultado == digitos.charAt(1);
+      } else return false;
+    }
+    /** Retorna texto sem mascara **/
+
+  }, {
+    key: "unmaskText",
+    value: function unmaskText(text) {
+      return text ? String(text).replace(new RegExp(/[-!$%^&*()_+|~=`{}[\]:";'<>?,./\\ ]/, 'g'), '') : text;
+    }
+  }]);
+
+  return Helper;
+}();
 
 
 

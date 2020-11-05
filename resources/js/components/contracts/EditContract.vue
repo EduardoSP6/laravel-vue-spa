@@ -60,7 +60,7 @@
                                     </div>
                                 </ValidationProvider>
 
-                                <button type="submit" class="btn btn-primary">Criar</button>
+                                <button type="submit" class="btn btn-primary">Salvar</button>
                             </form>
                         </ValidationObserver>
                     </div>
@@ -76,7 +76,7 @@
     import { required, email } from 'vee-validate/dist/rules';
     import pt_BR from 'vee-validate/dist/locale/pt_BR.json';
     import {mask} from 'vue-the-mask';
-    import Helper from '../../Helper';
+    import Helper from '../../helper';
 
     localize('pt_BR', pt_BR);
 
@@ -98,6 +98,7 @@
                 property_id: '',
                 properties: [],
                 docError: '',
+                contractProperty: {}
             }
         },
         computed: {
@@ -113,16 +114,20 @@
                 .get(`${process.env.MIX_APP_URL}/api/contracts/${this.$route.params.uuid}/edit`)
                 .then((response) => {
                     this.contractor_name = response.data.contractor_name,
-                    this.contractor_email = response.data.contractor_name,
+                    this.contractor_email = response.data.contractor_email,
                     this.document = response.data.document,
                     this.person_type = response.data.person_type,
-                    this.property_id = response.data.property_id
+                    this.property_id = response.data.property_id,
+                    this.contractProperty = response.data.property
                 });
 
             this.axios
                 .get(process.env.MIX_APP_URL + '/api/properties/avaliable')
                 .then(response => {
                     this.properties = response.data;
+                    if (this.contractProperty) {
+                        this.properties.push(this.contractProperty);
+                    }
                 });
         },
         methods: {

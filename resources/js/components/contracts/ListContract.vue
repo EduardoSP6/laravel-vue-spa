@@ -16,7 +16,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="contract in contracts" :key="property.uuid">
+            <tr v-for="contract in contracts" :key="contract.uuid">
                 <td>{{ contract.contractor_name }}</td>
                 <td>{{ contract.contractor_email }}</td>
                 <td>{{ contract.document }}</td>
@@ -24,7 +24,7 @@
                 <td>
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group mr-2" role="group">
-                            <router-link :to="{name: 'properties.edit', params: { uuid: contract.uuid }}" class="btn btn-sm btn-primary">
+                            <router-link :to="{name: 'contracts.edit', params: { uuid: contract.uuid }}" class="btn btn-sm btn-primary">
                                 Editar
                             </router-link>
                         </div>
