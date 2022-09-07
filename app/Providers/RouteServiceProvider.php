@@ -33,11 +33,11 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot();
 
         Route::bind('property', function ($value) {
-            return \App\Property::where('uuid', $value)->first();
+            return \App\Models\Property::where('uuid', $value)->first();
         });
 
         Route::bind('contract', function ($value) {
-            return \App\Contract::where('uuid', $value)->first();
+            return \App\Models\Contract::where('uuid', $value)->first();
         });
     }
 

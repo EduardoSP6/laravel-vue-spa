@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Contract;
+use App\Models\Contract;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 

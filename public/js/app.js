@@ -1953,7 +1953,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
 /* harmony import */ var vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vee-validate/dist/rules */ "./node_modules/vee-validate/dist/rules.js");
@@ -2082,7 +2082,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('email', vee_validat
   created: function created() {
     var _this = this;
 
-    this.axios.get("http://localhost:8000" + '/api/properties/avaliable').then(function (response) {
+    this.axios.get(process.env.MIX_APP_URL + '/api/properties/avaliable').then(function (response) {
       _this.properties = response.data;
     });
   },
@@ -2143,7 +2143,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('email', vee_validat
                   property_id: _this2.$data.property_id
                 };
 
-                _this2.axios.post("http://localhost:8000" + '/api/contracts', formData).then(function (response) {
+                _this2.axios.post(process.env.MIX_APP_URL + '/api/contracts', formData).then(function (response) {
                   return _this2.$router.push({
                     name: 'contracts'
                   });
@@ -2164,6 +2164,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('email', vee_validat
     }
   }
 });
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
@@ -2176,7 +2177,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('email', vee_validat
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
 /* harmony import */ var vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vee-validate/dist/rules */ "./node_modules/vee-validate/dist/rules.js");
@@ -2306,10 +2307,10 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('email', vee_validat
   created: function created() {
     var _this = this;
 
-    this.axios.get("".concat("http://localhost:8000", "/api/contracts/").concat(this.$route.params.uuid, "/edit")).then(function (response) {
+    this.axios.get("".concat(process.env.MIX_APP_URL, "/api/contracts/").concat(this.$route.params.uuid, "/edit")).then(function (response) {
       _this.contractor_name = response.data.contractor_name, _this.contractor_email = response.data.contractor_email, _this.document = response.data.document, _this.person_type = response.data.person_type, _this.property_id = response.data.property_id, _this.contractProperty = response.data.property;
     });
-    this.axios.get("http://localhost:8000" + '/api/properties/avaliable').then(function (response) {
+    this.axios.get(process.env.MIX_APP_URL + '/api/properties/avaliable').then(function (response) {
       _this.properties = response.data;
 
       if (_this.contractProperty) {
@@ -2374,7 +2375,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('email', vee_validat
                   property_id: _this2.$data.property_id
                 };
 
-                _this2.axios.put("".concat("http://localhost:8000", "/api/contracts/").concat(_this2.$route.params.uuid), formData).then(function (response) {
+                _this2.axios.put("".concat(process.env.MIX_APP_URL, "/api/contracts/").concat(_this2.$route.params.uuid), formData).then(function (response) {
                   _this2.$router.push({
                     name: 'contracts'
                   });
@@ -2395,6 +2396,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('email', vee_validat
     }
   }
 });
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
@@ -2407,7 +2409,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('email', vee_validat
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
+/* WEBPACK VAR INJECTION */(function(process) {//
 //
 //
 //
@@ -2455,12 +2457,13 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    this.axios.get("http://localhost:8000" + '/api/contracts').then(function (response) {
+    this.axios.get(process.env.MIX_APP_URL + '/api/contracts').then(function (response) {
       _this.contracts = response.data;
     });
   },
   methods: {}
 });
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
@@ -2473,7 +2476,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
 /* harmony import */ var vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate/dist/rules */ "./node_modules/vee-validate/dist/rules.js");
 /* harmony import */ var vee_validate_dist_locale_pt_BR_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vee-validate/dist/locale/pt_BR.json */ "./node_modules/vee-validate/dist/locale/pt_BR.json");
 var vee_validate_dist_locale_pt_BR_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_require__.t(/*! vee-validate/dist/locale/pt_BR.json */ "./node_modules/vee-validate/dist/locale/pt_BR.json", 1);
@@ -2584,7 +2587,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('email', vee_validat
     onSubmit: function onSubmit() {
       var _this = this;
 
-      this.axios.post("http://localhost:8000" + '/api/properties', this.$data).then(function (response) {
+      this.axios.post(process.env.MIX_APP_URL + '/api/properties', this.$data).then(function (response) {
         return _this.$router.push({
           name: 'properties'
         });
@@ -2597,6 +2600,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('email', vee_validat
     }
   }
 });
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
@@ -2609,7 +2613,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('email', vee_validat
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
 /* harmony import */ var vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate/dist/rules */ "./node_modules/vee-validate/dist/rules.js");
 /* harmony import */ var vee_validate_dist_locale_pt_BR_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vee-validate/dist/locale/pt_BR.json */ "./node_modules/vee-validate/dist/locale/pt_BR.json");
 var vee_validate_dist_locale_pt_BR_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_require__.t(/*! vee-validate/dist/locale/pt_BR.json */ "./node_modules/vee-validate/dist/locale/pt_BR.json", 1);
@@ -2718,7 +2722,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('email', vee_validat
   created: function created() {
     var _this = this;
 
-    this.axios.get("".concat("http://localhost:8000", "/api/properties/").concat(this.$route.params.uuid, "/edit")).then(function (response) {
+    this.axios.get("".concat(process.env.MIX_APP_URL, "/api/properties/").concat(this.$route.params.uuid, "/edit")).then(function (response) {
       _this.owner_email = response.data.owner_email;
       _this.street = response.data.street;
       _this.number = response.data.number;
@@ -2732,7 +2736,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('email', vee_validat
     onSubmit: function onSubmit() {
       var _this2 = this;
 
-      this.axios.put("".concat("http://localhost:8000", "/api/properties/").concat(this.$route.params.uuid), this.$data).then(function (response) {
+      this.axios.put("".concat(process.env.MIX_APP_URL, "/api/properties/").concat(this.$route.params.uuid), this.$data).then(function (response) {
         _this2.$router.push({
           name: 'properties'
         });
@@ -2745,6 +2749,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('email', vee_validat
     }
   }
 });
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
@@ -2757,7 +2762,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('email', vee_validat
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
+/* WEBPACK VAR INJECTION */(function(process) {//
 //
 //
 //
@@ -2811,7 +2816,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    this.axios.get("http://localhost:8000" + '/api/properties').then(function (response) {
+    this.axios.get(process.env.MIX_APP_URL + '/api/properties').then(function (response) {
       _this.properties = response.data;
     });
   },
@@ -2835,7 +2840,7 @@ __webpack_require__.r(__webpack_exports__);
       event.preventDefault();
 
       if (confirm("Deseja realmente excluir este registro?")) {
-        this.axios["delete"]("".concat("http://localhost:8000", "/api/properties/").concat(uuid)).then(function (response) {
+        this.axios["delete"]("".concat(process.env.MIX_APP_URL, "/api/properties/").concat(uuid)).then(function (response) {
           var i = _this2.properties.map(function (item) {
             return item.uuid;
           }).indexOf(uuid);
@@ -2846,6 +2851,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   }
 });
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
@@ -60433,8 +60439,8 @@ var routes = [{
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! c:\xampp\htdocs\laravel-vue-spa\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! c:\xampp\htdocs\laravel-vue-spa\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

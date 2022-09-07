@@ -20,11 +20,15 @@
                 <td>{{ contract.contractor_name }}</td>
                 <td>{{ contract.contractor_email }}</td>
                 <td>{{ contract.document }}</td>
-                <td>{{ `${contract.property.street}, ${contract.property.number}, ${contract.property.district}, ${contract.property.city}` }}</td>
+                <td>{{
+                        `${contract.property.street}, ${contract.property.number}, ${contract.property.district}, ${contract.property.city}`
+                    }}
+                </td>
                 <td>
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group mr-2" role="group">
-                            <router-link :to="{name: 'contracts.edit', params: { uuid: contract.uuid }}" class="btn btn-sm btn-primary">
+                            <router-link :to="{name: 'contracts.edit', params: { uuid: contract.uuid }}"
+                                         class="btn btn-sm btn-primary">
                                 Editar
                             </router-link>
                         </div>
@@ -38,20 +42,19 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                contracts: []
-            }
-        },
-        created() {
-            this.axios
-                .get(process.env.MIX_APP_URL + '/api/contracts')
-                .then(response => {
-                    this.contracts = response.data;
-                });
-        },
-        methods: {
+export default {
+    data() {
+        return {
+            contracts: []
         }
-    }
+    },
+    created() {
+        this.axios
+            .get(process.env.MIX_APP_URL + '/api/contracts')
+            .then(response => {
+                this.contracts = response.data;
+            });
+    },
+    methods: {}
+}
 </script>

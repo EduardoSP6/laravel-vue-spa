@@ -1,0 +1,63 @@
+version: '3.7'
+services:
+  nginx:
+    container_name: laravue-nginx
+    image: nginx:alpine
+    restart: unless-stopped
+    build: ./docker/nginx
+    tty: true
+    ports:
+      - "8001:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - laravuenet
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravue-php
+    image: laravue/php
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+      - ./docker/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+    extra_hosts:
+      - "internal.host:host-gateway"
+    networks:
+      - laravuenet
+    depends_on:
+      - nginx
+
+  mysql:
+    container_name: laravue-mysql
+    image: mysql:5.7.29
+    restart: unless-stopped
+    tty: true
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+    volumes:
+      - ./docker/mysql/dbdata:/var/lib/mysql
+      - ./docker/mysql:/docker-entrypoint-initdb.d
+    ports:
+      - "3386:3306"
+    networks:
+      - laravuenet
+
+  redis:
+    container_name: laravue-redis
+    image: redis:latest
+    networks:
+      - laravuenet
+
+networks:
+  laravuenet:
+    driver: bridge

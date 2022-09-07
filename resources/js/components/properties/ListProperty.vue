@@ -8,7 +8,8 @@
         <table class="table table-bordered table-striped" v-show="properties.length > 0">
             <thead>
             <tr>
-                <th><a href="#" @click="sortProperties('owner_email')" title="Clique para ordenar">E-mail do proprietário</a></th>
+                <th><a href="#" @click="sortProperties('owner_email')" title="Clique para ordenar">E-mail do
+                    proprietário</a></th>
                 <th><a href="#" @click="sortProperties('street')" title="Clique para ordenar">Endereço</a></th>
                 <th>Status</th>
                 <th>Ações</th>
@@ -25,12 +26,15 @@
                 <td>
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group mr-2" role="group">
-                            <router-link :to="{name: 'properties.edit', params: { uuid: property.uuid }}" class="btn btn-sm btn-primary">
+                            <router-link :to="{name: 'properties.edit', params: { uuid: property.uuid }}"
+                                         class="btn btn-sm btn-primary">
                                 Editar
                             </router-link>
                         </div>
                         <div class="btn-group mr-2" role="group">
-                            <button class="btn btn-sm btn-danger" @click="deleteProperty(property.uuid, $event)">Excluir</button>
+                            <button class="btn btn-sm btn-danger" @click="deleteProperty(property.uuid, $event)">
+                                Excluir
+                            </button>
                         </div>
                     </div>
                 </td>
@@ -42,46 +46,46 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                sortColumn: 'owner_email',
-                sortOrder: 'asc',
-                properties: []
+export default {
+    data() {
+        return {
+            sortColumn: 'owner_email',
+            sortOrder: 'asc',
+            properties: []
+        }
+    },
+    created() {
+        this.axios
+            .get(process.env.MIX_APP_URL + '/api/properties')
+            .then(response => {
+                this.properties = response.data;
+            });
+    },
+    computed: {
+        sortData() {
+            return _.orderBy(this.properties, this.sortColumn, this.sortOrder);
+        }
+    },
+    methods: {
+        sortProperties(field) {
+            if (this.sortColumn === field) {
+                this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+            } else {
+                this.sortColumn = field;
+                this.sortOrder = 'asc';
             }
         },
-        created() {
-            this.axios
-                .get(process.env.MIX_APP_URL + '/api/properties')
-                .then(response => {
-                    this.properties = response.data;
-                });
-        },
-        computed: {
-            sortData() {
-                return  _.orderBy(this.properties, this.sortColumn, this.sortOrder);
-            }
-        },
-        methods: {
-            sortProperties(field) {
-                if (this.sortColumn === field) {
-                    this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
-                } else {
-                    this.sortColumn = field;
-                    this.sortOrder = 'asc';
-                }
-            },
-            deleteProperty(uuid, event) {
-                event.preventDefault();
-                if (confirm("Deseja realmente excluir este registro?")) {
-                    this.axios
-                        .delete(`${process.env.MIX_APP_URL}/api/properties/${uuid}`)
-                        .then(response => {
-                            let i = this.properties.map(item => item.uuid).indexOf(uuid);
-                            this.properties.splice(i, 1)
-                        });
-                }
+        deleteProperty(uuid, event) {
+            event.preventDefault();
+            if (confirm("Deseja realmente excluir este registro?")) {
+                this.axios
+                    .delete(`${process.env.MIX_APP_URL}/api/properties/${uuid}`)
+                    .then(response => {
+                        let i = this.properties.map(item => item.uuid).indexOf(uuid);
+                        this.properties.splice(i, 1)
+                    });
             }
         }
     }
+}
 </script>

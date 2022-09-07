@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PropertyRequest;
-use App\Property;
+use App\Models\Property;
 use App\Repositories\PropertyRepository;
-use Illuminate\Http\Request;
 
 class PropertyController extends Controller
 {

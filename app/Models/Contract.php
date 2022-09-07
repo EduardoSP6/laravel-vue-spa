@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
-use App\Property;
 
 class Contract extends Model implements Transformable
 {
@@ -21,7 +21,8 @@ class Contract extends Model implements Transformable
         'contractor_name',
     ];
 
-    public function property() {
+    public function property(): BelongsTo
+    {
         return $this->belongsTo(Property::class, 'property_id');
     }
 }

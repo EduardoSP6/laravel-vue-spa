@@ -125,7 +125,7 @@
                     return;
                 }
 
-                // remove a mascara
+                // remove the input mask
                 document = Helper.unmaskText(document);
 
                 // PJ
@@ -168,7 +168,6 @@
                         this.$router.push({name: 'contracts'})
                     ))
                     .catch(error => {
-                        // Exibe erros do backend
                         if (error.response.status === 422) {
                             this.$refs.form.setErrors(error.response.data.errors);
                         }

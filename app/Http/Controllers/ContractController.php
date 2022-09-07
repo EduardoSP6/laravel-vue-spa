@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Contract;
 use App\Http\Requests\ContractRequest;
 use App\Jobs\UpdatePropertyStatus;
+use App\Models\Contract;
 use App\Repositories\ContractRepository;
 
 class ContractController extends Controller

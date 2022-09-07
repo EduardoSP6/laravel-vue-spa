@@ -6,7 +6,7 @@
                     <div class="card-header">First Component</div>
 
                     <div class="card-body">
-                        Testando
+                        Testing...
                     </div>
                 </div>
             </div>

@@ -6,8 +6,8 @@
             </div>
             <div class="collapse navbar-collapse">
                 <div class="navbar-nav">
-                    <router-link to="/properties" class="nav-item nav-link">Imóveis</router-link>
-                    <router-link to="/contracts" class="nav-item nav-link">Contratos</router-link>
+                    <router-link to="/properties" class="nav-item nav-link">Properties</router-link>
+                    <router-link to="/contracts" class="nav-item nav-link">Contracts</router-link>
                 </div>
             </div>
         </nav>
